@@ -1,0 +1,31 @@
+﻿<div class="row" ng-app="app", ng-controller="myController" ng-init="countries.Get()">
+    <div class="col-md-12" ng-cloak>
+        <md-input-container class="md-block" flex-gt-sm style="margin-top: 30px;">
+            <label>Filter by country</label>
+            <input ng-model="search.name">
+        </md-input-container>
+        <table class="table">
+            <thead class="thead-inverse">
+                <tr>
+                    <th></th>
+                    <th>Country</th>
+                    <th>Region</th>
+                    <th>Population</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="country in (filteredList = (countries.list | filter: search)) | itemsPerPage: 10" pagination-id="countries_results">
+                    <th scope="row">
+                        <img ng-src="{{country.flag}}" width="50" />
+                    </th>
+                    <td>{{country.name}}</td>
+                    <td>{{country.region}}</td>
+                    <td>{{country.population}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-center" ng-show="!countries.list">loading...</div>
+        <dir-pagination-controls pagination-id="countries_results"></dir-pagination-controls>
+    </div>
+    
+</div>
